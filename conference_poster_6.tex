@@ -21,11 +21,12 @@
 
 \documentclass[a0,portrait]{a0poster}
 
+\usepackage{graphicx}
 \usepackage{multicol} % This is so we can have multiple columns of text side-by-side
 \columnsep=100pt % This is the amount of white space between the columns in the poster
 \columnseprule=3pt % This is the thickness of the black line between the columns in the poster
 
-\usepackage[svgnames]{xcolor} % Specify colors by their 'svgnames', for a full list of all colors available see here: http://www.latextemplates.com/svgnames-colors
+%\usepackage[svgnames]{xcolor} % Specify colors by their 'svgnames', for a full list of all colors available see here: http://www.latextemplates.com/svgnames-colors
 
 \usepackage{times} % Use the times font
 %\usepackage{palatino} % Uncomment to use the Palatino font
@@ -33,9 +34,16 @@
 \usepackage{graphicx} % Required for including images
 \graphicspath{{figures/}} % Location of the graphics files
 \usepackage{booktabs} % Top and bottom rules for table
-\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage[font=normal,labelfont=bf]{caption} % Required for specifying captions to tables and figures
 \usepackage{amsfonts, amsmath, amsthm, amssymb} % For math fonts, symbols and environments
 \usepackage{wrapfig} % Allows wrapping text around tables and figures
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\definecolor{DB}{RGB}{51,102,153}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,fit,backgrounds, arrows.meta}
 
 \begin{document}
 
@@ -48,19 +56,24 @@
 % The second is 25% wide and houses a logo for your university/organization or a photo of you
 % The widths of these boxes can be easily edited to accommodate your content as you see fit
 
-\begin{minipage}[b]{0.75\linewidth}
-\veryHuge \color{NavyBlue} \textbf{Unnecessarily Complicated Research Title} \color{Black}\\ % Title
-\Huge\textit{An Exploration of Complexity}\\[2cm] % Subtitle
-\huge \textbf{John Smith \& James Smith}\\[0.5cm] % Author(s)
-\huge University and Department Name\\[0.4cm] % University/organization
-\Large \texttt{john@LaTeXTemplates.com} --- 1 (000) 111 1111\\
+\begin{minipage}[b]{0.70\linewidth}
+\veryHuge \color{DB} \textbf{A  Study  on  Brazilian  Portuguese  Verbal\\  Irregularities  via  Artificial  Neural  Networks } \color{black} \vspace{1cm}
+\\ % Title
+%\Huge\textit{An Exploration of Complexity}\\[2cm] % Subtitle
+\huge \textbf{Beatriz Albiero}\\[0.5cm] % Author(s)
+\huge University of Sao Paulo \\[0.4cm] % University/organization
+\Large \texttt{beatriz.albiero@usp.br}\\
 \end{minipage}
 %
-\begin{minipage}[b]{0.25\linewidth}
-\includegraphics[width=20cm]{logo.png}\\
+\begin{minipage}[b]{0.12\linewidth}
+\includegraphics[width=1.4\textwidth]{Glic_Transparente.png}\\
+\end{minipage}
+\hspace{3cm}
+\begin{minipage}[b]{0.12\linewidth}
+\includegraphics[width=\textwidth]{DataLab-Logo-Alta.png}\\
 \end{minipage}
 
-\vspace{1cm} % A bit of extra whitespace between the header and poster content
+\vspace{3.5cm} % A bit of extra whitespace between the header and poster content
 
 %----------------------------------------------------------------------------------------
 
@@ -70,166 +83,160 @@
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
-\color{Navy} % Navy color for the abstract
+\color{DB} % Navy color for the abstract
 
-\begin{abstract}
-
-Sed fringilla tempus hendrerit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam ut elit sit amet metus lobortis consequat sit amet in libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sem magna. Nunc at convallis urna. isus ante. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing. Quisque vestibulum eros eu. Phasellus imperdiet, tortor vitae congue bibendum, felis enim sagittis lorem, et volutpat ante orci sagittis mi. Morbi rutrum laoreet semper. Morbi accumsan enim nec tortor consectetur non commodo nisi sollicitudin. Proin sollicitudin. Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh.
-
-\end{abstract}
+\section*{Abstract}
+\normalsize{ \color{darkgray}
+ This project is an attempt at reproducing Rumelhart and McClelland's \cite{rumelhart:1986} connectionist experiment described in the book Parallel Distributed Processing, chapter "On learning the past tense of English verbs", with Brazilian Portuguese as a target language. In this book, Rumelhart and McClelland describe a new theory of cognition called connectionism that is challenging the idea of symbolic computation that has traditionally been at the center of the debate in theoretical discussions about the mind. In the chapter "On learning the past tense of English verbs", Rumelhart and McClelland describe an experiment in which a feedforward neural network was developed in order to find patterns among phonological features between present and past tense forms of English verbs. In this research, an identical network has been built to predict Brazilian Portuguese irregularities. We will discuss our model's results and the difficulties in adapting this model in order to predict irregularities in Brazilian Portuguese.
+}
 
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
-\color{SaddleBrown} % SaddleBrown color for the introduction
+\color{DB} % SaddleBrown color for the introduction
 
 \section*{Introduction}
+\normalsize{ \color{darkgray}
+The process of verbal inflection from present to past tense in the English language is certainly one of the most controversial topics of debate among the main theoretical currents in linguistic study \cite{chomsky:1968,Pinker:1988,rumelhart:1986}.  At the heart of the debate is the exact characterization of the mechanisms that enable a speaker to relate a verb in present tense to its past tense form. 
 
-Aliquam non lacus dolor, \textit{a aliquam quam} \cite{Smith:2012qr}. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla in nibh mauris. Donec vel ligula nisi, a lacinia arcu. Sed mi dui, malesuada vel consectetur et, egestas porta nisi. Sed eleifend pharetra dolor, et dapibus est vulputate eu. \textbf{Integer faucibus elementum felis vitae fringilla.} In hac habitasse platea dictumst. Duis tristique rutrum nisl, nec vulputate elit porta ut. Donec sodales sollicitudin turpis sed convallis. Etiam mauris ligula, blandit adipiscing condimentum eu, dapibus pellentesque risus.
-
-\textit{Aliquam auctor}, metus id ultrices porta, risus enim cursus sapien, quis iaculis sapien tortor sed odio. Mauris ante orci, euismod vitae tincidunt eu, porta ut neque. Aenean sapien est, viverra vel lacinia nec, venenatis eu nulla. Maecenas ut nunc nibh, et tempus libero. Aenean vitae risus ante. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing.
+The past tense of English is made up of a set of inflection families, which are split into two macro families: regular and irregular. Each macro family features subsets, grouped together by inflective similarity, with a noteworthy variety of families within the irregular group. This peculiar quality has motivated researchers D. Rumelhart and J. McClelland to build an artificial neural network model capable of predicting said inflective processes. While it is also possible to observe inflective regularities within irregular verb families in Brazilian Portuguese, the question remains: is it possible to adapt Rumelhart and McClelland's model to such language?   
+}
 
 %----------------------------------------------------------------------------------------
 %	OBJECTIVES
 %----------------------------------------------------------------------------------------
 
-\color{DarkSlateGray} % DarkSlateGray color for the rest of the content
+\color{DB} % DarkSlateGray color for the rest of the content
 
 \section*{Main Objectives}
 
-\begin{enumerate}
-\item Lorem ipsum dolor sit amet, consectetur.
-\item Nullam at mi nisl. Vestibulum est purus, ultricies cursus volutpat sit amet, vestibulum eu.
-\item Praesent tortor libero, vulputate quis elementum a, iaculis.
-\item Phasellus a quam mauris, non varius mauris. Fusce tristique, enim tempor varius porta, elit purus commodo velit, pretium mattis ligula nisl nec ante.
-\item Ut adipiscing accumsan sapien, sit amet pretium.
-\item Estibulum est purus, ultricies cursus volutpat
-\item Nullam at mi nisl. Vestibulum est purus, ultricies cursus volutpat sit amet, vestibulum eu.
-\item Praesent tortor libero, vulputate quis elementum a, iaculis.
-\end{enumerate}
+\color{darkgray}
 
+\begin{itemize}
+\item \large{The development of predictive computational  models (artificial neural networks) capable of detecting inflective phonological patterns within irregular verb families in Brazilian Portuguese.}
+\item \large{Analysis of the model's results.}
+\end{itemize} 
 %----------------------------------------------------------------------------------------
 %	MATERIALS AND METHODS
 %----------------------------------------------------------------------------------------
-
-\section*{Materials and Methods}
-
-Fusce magna risus, molestie ut porttitor in, consectetur sed mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque consectetur blandit pellentesque. Sed odio justo, viverra nec porttitor vel, lacinia a nunc. Suspendisse pulvinar euismod arcu, sit amet accumsan enim fermentum quis. In id mauris ut dui feugiat egestas. Vestibulum ac turpis lacinia nisl commodo sagittis eget sit amet sapien.
+\color{DB}
+\section*{Methodology}
+\color{darkgray}
+A corpus of four hundred and three verbs, both in the infinitive and in the first person singular of the indicative, was built via web-scraping techniques. The material was then translated into a pseudo-phonological writing system, which was further codified into Wickelfeatures. A Feed Forward Neural Network was then built with the help of Keras library \cite{chollet2015keras}.
+The network, similar to the one presented by the authors, is basically made up of two simple layers. The first layer is responsible for receiving the input data, which is a codified representation of the phonological features, the sounds, of a verb in the infinitive form (\textbf{Wickelfeatures})\cite{rumelhart:1986}. The second layer outputs identically codified phonological features, however, conjugated in the first person singular of the present tense. The first person singular was chosen by virtue of its moderate range of inflective variations. The results were then arranged into tables for further analysis. 
 
 %------------------------------------------------
 
-\subsection*{Mathematical Section}
+\color{DB}
+\subsection*{Architecture}
 
-Nulla vel nisl sed mauris auctor mollis non sed. 
+\color{black}
+\begin{center}
+\input{tikz/fdd}
+\captionof{figure}{Neural Artificial Network Scheme}
+\end{center}
+\color{DB}
+\subsection*{Corpus}
+\color{darkgray}
+403 verbs, divided into two parts: test ($\thicksim$20\%) and training ($\thicksim$80\%)\vspace{1cm}
 
-\begin{equation}
-E = mc^{2}
-\label{eqn:Einstein}
-\end{equation}
+\begin{center}
+\begin{minipage}{0.45\textwidth}\centering
+\begin{tabular}{lllll}
+\hline
+ & \textbf{Regulars} & \textbf{Irregulars} & \textbf{Total} & \textbf{\%} \\ \hline
+\textbf{Test} & 42 & 36 & 78 & 19.35 \\ \hline
+\textbf{Train} & 172 & 153 & 325 & 80.65 \\ \hline
+\textbf{Total} & 214 & 189 & 403 & 100 \\ \hline
+\end{tabular}
+\captionof{table}{Regular-irregular ratios in datasets}
+\label{tab1}
+\end{minipage}
+\end{center}
 
-Curabitur mi sem, pulvinar quis aliquam rutrum. (1) edf (2)
-, $\Omega=[-1,1]^3$, maecenas leo est, ornare at. $z=-1$ edf $z=1$ sed interdum felis dapibus sem. $x$ set $y$ ytruem. 
-Turpis $j$ amet accumsan enim $y$-lacina; 
-ref $k$-viverra nec porttitor $x$-lacina. 
 
-Vestibulum ac diam a odio tempus congue. Vivamus id enim nisi:
 
-\begin{eqnarray}
-\cos\bar{\phi}_k Q_{j,k+1,t} + Q_{j,k+1,x}+\frac{\sin^2\bar{\phi}_k}{T\cos\bar{\phi}_k} Q_{j,k+1} &=&\nonumber\\ 
--\cos\phi_k Q_{j,k,t} + Q_{j,k,x}-\frac{\sin^2\phi_k}{T\cos\phi_k} Q_{j,k}\label{edgek}
-\end{eqnarray}
-and
-\begin{eqnarray}
-\cos\bar{\phi}_j Q_{j+1,k,t} + Q_{j+1,k,y}+\frac{\sin^2\bar{\phi}_j}{T\cos\bar{\phi}_j} Q_{j+1,k}&=&\nonumber \\
--\cos\phi_j Q_{j,k,t} + Q_{j,k,y}-\frac{\sin^2\phi_j}{T\cos\phi_j} Q_{j,k}.\label{edgej}
-\end{eqnarray} 
-
-Nulla sed arcu arcu. Duis et ante gravida orci venenatis tincidunt. Fusce vitae lacinia metus. Pellentesque habitant morbi. $\mathbf{A}\underline{\xi}=\underline{\beta}$ Vim $\underline{\xi}$ enum nidi $3(P+2)^{2}$ lacina. Id feugain $\mathbf{A}$ nun quis; magno.
 
 %----------------------------------------------------------------------------------------
 %	RESULTS 
 %----------------------------------------------------------------------------------------
-
+\color{DB}
 \section*{Results}
+\color{darkgray}
+	A small set of 21 verbs was used to test the accuracy of the model. Since all verbs in the infinitive form end in the phoneme “r”, the deletion of this phoneme reduced redundancies and facilitated the decoding of wickelfeatures. In order to test the relevance of the irregular verb ratio for the model’s accuracy, five datasets, each with a different regular-irregular verb ratio, were tested, with the best infinitive to first person singular prediction accuracy being 47.62\% for two sets: one made up of 55\% irregular verbs and other made up of 95\% irregular verbs.
 
-Donec faucibus purus at tortor egestas eu fermentum dolor facilisis. Maecenas tempor dui eu neque fringilla rutrum. Mauris \emph{lobortis} nisl accumsan. Aenean vitae risus ante.
-%
-\begin{wraptable}{l}{12cm} % Left or right alignment is specified in the first bracket, the width of the table is in the second
-\begin{tabular}{l l l}
+Verbs exceeding four phonemes did not yield satisfactory Wickelfeature to Pseudo-Phonological-Writing decoding results.
+
+\begin{center}\vspace{1cm}
+\begin{minipage}[b]{0.45\linewidth}\centering
+\begin{tabular}{llll}
+\textbf{Ratio} & \textbf{Epochs} & \textbf{Batch Size} & \textbf{Accuracy} \\
 \toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
+55\% & 400 & 464 & 47.62\% \\
+65\% & 400 & 565 & 38.10\% \\
+75\% & 400 & 388 & 38.10\% \\
+85\% & 400 & 390 & 42.86\% \\
+95\% & 400 & 395 & 47.62\%
 \end{tabular}
-\captionof{table}{\color{Green} Table caption}
-\end{wraptable}
-%
-Phasellus imperdiet, tortor vitae congue bibendum, felis enim sagittis lorem, et volutpat ante orci sagittis mi. Morbi rutrum laoreet semper. Morbi accumsan enim nec tortor consectetur non commodo nisi sollicitudin. Proin sollicitudin. Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh.
-
-Nulla ut porttitor enim. Suspendisse venenatis dui eget eros gravida tempor. Mauris feugiat elit et augue placerat ultrices. Morbi accumsan enim nec tortor consectetur non commodo. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing. Quisque vestibulum eros eu. Phasellus imperdiet, tortor vitae congue bibendum, felis enim sagittis lorem, et volutpat ante orci sagittis mi. Morbi rutrum laoreet semper. Morbi accumsan enim nec tortor consectetur non commodo nisi sollicitudin.
-
-\begin{center}\vspace{1cm}
-\includegraphics[width=0.8\linewidth]{placeholder}
-\captionof{figure}{\color{Green} Figure caption}
-\end{center}\vspace{1cm}
-
-In hac habitasse platea dictumst. Etiam placerat, risus ac.
-
-Adipiscing lectus in magna blandit:
-
-\begin{center}\vspace{1cm}
-\begin{tabular}{l l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2} \\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
+\captionof{table}{Accuracy results for different ratios of irregular verbs.}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\begin{tabular}{llll}
+\textbf{Verb} & \textbf{Input} & \textbf{Expected} & \textbf{Output} \\ \hline
+pegar & \#pega\# & \#pEgu\# & \#pEku\# \\
+cegar & \#sega\# & \#sEgu\# & \#sigu\# \\
+secar & \#seka\# & \#sEku\# & \#siku\# \\
+levar & \#leva\# & \#lEvu\# & \#levu\# \\
+orar & \#ora\# & \#Oru\# & \#earu\# \\
+morar & \#mora\# & \#mOru\# & \#mEru\# \\
+postar & \#posta\# & \#pOstu\# & \#pOtu\#* \\
+mentir & \#menti\# & \#mintu\# & \#mitu\#* \\
+tossir & \#tosi\# & \#tusu\# & \#tutu\# \\
+fazer & \#faze\# & \#fasu\# & \#fasu\# \\
+matar & \#mata\# & \#matu\# & \#matu\# \\
+pagar & \#paga\# & \#pagu\# & \#pagu\# \\
+\#sair\# & \#sai\# & \#saiu\# & \#saiu\#
 \end{tabular}
-\captionof{table}{\color{Green} Table caption}
-\end{center}\vspace{1cm}
+\captionof{table}{Some outputs of the model}
+\end{minipage}
+\end{center}
 
-Vivamus sed nibh ac metus tristique tristique a vitae ante. Sed lobortis mi ut arcu fringilla et adipiscing ligula rutrum. Aenean turpis velit, placerat eget tincidunt nec, ornare in nisl. In placerat.
-
-\begin{center}\vspace{1cm}
-\includegraphics[width=0.8\linewidth]{placeholder}
-\captionof{figure}{\color{Green} Figure caption}
-\end{center}\vspace{1cm}
 
 %----------------------------------------------------------------------------------------
 %	CONCLUSIONS
 %----------------------------------------------------------------------------------------
 
-\color{SaddleBrown} % SaddleBrown color for the conclusions to make them stand out
+\color{DB} % SaddleBrown color for the conclusions to make them stand out
 
 \section*{Conclusions}
 
 \begin{itemize}
-\item Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh. Phasellus fermentum rutrum elementum. Nam quis justo lectus.
-\item Vestibulum sem ante, hendrerit a gravida ac, blandit quis magna.
-\item Donec sem metus, facilisis at condimentum eget, vehicula ut massa. Morbi consequat, diam sed convallis tincidunt, arcu nunc.
-\item Nunc at convallis urna. isus ante. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing.
+\color{darkgray}
+\item \large Changing the ratio of irregular verbs in the training set apparently did not cause significant changes in accuracy, as shown in Table 2. It happened probably because the training dataset was made up of a small variety of verbs and enlarging its irregular verb classes simply resulted in the strengthening of connections for the Wickelfeatures that it already knew, culminating in a poor generalization capacity.
+\item  \large The process of decoding Wickelfeatures into the pseudo-phonological writing system failed to yield satisfactory outcomes due to excessive binding redundancy within the Feed Forward Neural Network. The inadequacy of such model called for the implementation of a new strategy, which led to further research into Recurrent Neural Networks, particularly, the Encoder-Decoder technique. 
 \end{itemize}
 
-\color{DarkSlateGray} % Set the color back to DarkSlateGray for the rest of the content
+\color{darkgray} % Set the color back to DarkSlateGray for the rest of the content
 
 %----------------------------------------------------------------------------------------
 %	FORTHCOMING RESEARCH
 %----------------------------------------------------------------------------------------
-
+\color{DB}
 \section*{Forthcoming Research}
 
-Vivamus molestie, risus tempor vehicula mattis, libero arcu volutpat purus, sed blandit sem nibh eget turpis. Maecenas rutrum dui blandit lorem vulputate gravida. Praesent venenatis mi vel lorem tempor at varius diam sagittis. Nam eu leo id turpis interdum luctus a sed augue. Nam tellus.
-
+\begin{itemize}
+\color{darkgray}
+\item \large Encoder-Decoder Model implementation with the purpose of better decoding Wickelfeatures.
+\item \large Once the decoding of Wickelfeatures is properly contrived, a psycho-linguistic test will take place, in order to measure native speaker intuition against the Neural Network output.
+\end{itemize}
  %----------------------------------------------------------------------------------------
 %	REFERENCES
 %----------------------------------------------------------------------------------------
 
+\color{DB}
 \nocite{*} % Print all references regardless of whether they were cited in the poster or not
 \bibliographystyle{plain} % Plain referencing style
 \bibliography{sample} % Use the example bibliography file sample.bib
@@ -237,10 +244,10 @@ Vivamus molestie, risus tempor vehicula mattis, libero arcu volutpat purus, sed 
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
-
+\color{DB}
 \section*{Acknowledgements}
-
-Etiam fermentum, arcu ut gravida fringilla, dolor arcu laoreet justo, ut imperdiet urna arcu a arcu. Donec nec ante a dui tempus consectetur. Cras nisi turpis, dapibus sit amet mattis sed, laoreet.
+\color{darkgray}
+I would like to express my very great appreciation to Marcelo Barra, Livy Real, Romulo Ferreira, the DataLab team, NAACL Emerging Regions Fund and the Linguistics Graduation Department (FFLCH-USP).
 
 %----------------------------------------------------------------------------------------
 

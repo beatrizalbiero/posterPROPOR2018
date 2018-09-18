@@ -1,0 +1,86 @@
+\input{definitions/colors}
+\input{definitions/styles}
+% \begin{figure}[]
+% \centering
+
+\scalebox{1.5}{
+
+\begin{tikzpicture}[auto]
+\centering
+% operations =========
+% phon features 1
+\node[textonly] (1pho1) {[high, vowel, front]};
+
+% Legenda
+\node[textonly, above=10pt of 1pho1] (leg1) {Input Units};
+
+
+% FNN input
+\node[normal, right=5pt of 1pho1] (x1) {};
+\node[normal, below=25pt of x1] (x2) {};
+\node[normal, below=25pt of x2] (x3) {};
+\node[normal, below=25pt of x3] (x4) {};
+\node[normal, below=25pt of x4] (x5) {};
+\node[normal, below=25pt of x5] (x6) {};
+
+% FNN output
+\node[normal, right=85pt of x1] (y1) {};
+\node[normal, right=85pt of x2] (y2) {};
+\node[normal, right=85pt of x3] (y3) {};
+\node[normal, right=85pt of x4] (y4) {};
+\node[normal, right=85pt of x5] (y5) {};
+\node[normal, right=85pt of x6] (y6) {};
+
+% phon features 2
+\node[textonly, right=5pt of y1] (2pho1) {[high, vowel, front]};
+\node[textonly, above=10pt of 2pho1] (leg2) {Output Units};
+\node[textonly, left=25pt of x2] (1pho2) {[low, back, nasal]};
+\node[textonly, right=25pt of y2] (2pho2) {[low, back, nasal]};
+\node[textonly, left=25pt of x3] (3pho1) {...};
+\node[textonly, right=25pt of y3] (1pho3) {...};
+\node[textonly, left=25pt of x6] (6pho1) {[vowel, nasal, middle]};
+\node[textonly, right=25pt of y6] (1pho6) {[vowel, nasal, middle]};
+% edges FNN
+\path[nedge] (x1) -- (y1);
+\path[nedge] (x1) -- (y2);
+\path[nedge] (x1) -- (y3);
+\path[nedge] (x1) -- (y4);
+\path[nedge] (x1) -- (y5);
+\path[nedge] (x1) -- (y6);
+\path[nedge] (x2) -- (y1);
+\path[nedge] (x2) -- (y2);
+\path[nedge] (x2) -- (y3);
+\path[nedge] (x2) -- (y4);
+\path[nedge] (x2) -- (y5);
+\path[nedge] (x2) -- (y6);
+\path[nedge] (x3) -- (y1);
+\path[nedge] (x3) -- (y2);
+\path[nedge] (x3) -- (y3);
+\path[nedge] (x3) -- (y4);
+\path[nedge] (x3) -- (y5);
+\path[nedge] (x3) -- (y6);
+\path[nedge] (x4) -- (y1);
+\path[nedge] (x4) -- (y2);
+\path[nedge] (x4) -- (y3);
+\path[nedge] (x4) -- (y4);
+\path[nedge] (x4) -- (y5);
+\path[nedge] (x4) -- (y6);
+\path[nedge] (x5) -- (y1);
+\path[nedge] (x5) -- (y2);
+\path[nedge] (x5) -- (y3);
+\path[nedge] (x5) -- (y4);
+\path[nedge] (x5) -- (y5);
+\path[nedge] (x5) -- (y6);
+\path[nedge] (x6) -- (y1);
+\path[nedge] (x6) -- (y2);
+\path[nedge] (x6) -- (y3);
+\path[nedge] (x6) -- (y4);
+\path[nedge] (x6) -- (y5);
+\path[nedge] (x6) -- (y6);
+
+
+\end{tikzpicture}
+}
+% }\caption{Neural Net Scheme} 
+% \label{fig:esquemafdd}
+% \end{figure}
